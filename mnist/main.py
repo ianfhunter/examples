@@ -104,6 +104,13 @@ def main():
         train(args, model, device, train_loader, optimizer, epoch)
         test(args, model, device, test_loader)
 
+        state = {
+            'state_dict': model.state_dict(),
+            'optimizer': optimizer.state_dict()
+        }
+        print("Save trained reference to file...")
+        torch.save(state, "lenet"+str(epoch)+".pytt")
+        print("Saved")
 
 if __name__ == '__main__':
     main()
